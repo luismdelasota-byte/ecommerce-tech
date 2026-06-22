@@ -4,7 +4,6 @@ import com.ecommercetech.product.dto.ProductRequestDTO;
 import com.ecommercetech.product.dto.ProductResponseDTO;
 import com.ecommercetech.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ecommercetech.product.mapper.Mapper;
 import com.ecommercetech.product.model.Product;
@@ -23,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    //Creamos el producto a partir del DTO recibido, lo guardamos en la base de datos y devolvemos el producto guardado convertido a DTO
+    //Creamos el producto a partir del DTO recibido, lo g DTOuardamos en la base de datos y devolvemos el producto guardado convertido a
     @Override
     public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO){
 

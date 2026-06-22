@@ -45,7 +45,7 @@ public class ProductController {
     //DELE : Eliminar producto
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
-        // Buscamos el producto po id
+        // Buscamos el producto por id
         productService.deleteProduct(id);
         // ResponseEntity : respuesta  HTTP
         return ResponseEntity.noContent().build();
