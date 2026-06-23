@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.mockito.Mockito;
 
 import java.util.List;
+import java.util.Optional;
 
 /*
 * Utilizamos la extension de Mockito en esta clase, habilitando todas las funcionalidades
@@ -89,10 +90,74 @@ public class ProductServiceTest {
         List<ProductResponseDTO> result = productService.getAllProducts();
 
         // Assert(comprobar resultados)
-        assertEquals(2, result.size()); // Devuelve el numero de elementos que hay en la lista, semejanete a .length
+        assertEquals(2, result.size()); // Devuelve el numero de elementos que hay en la lista, semejante a .length
         assertEquals("Laptop", result.get(0).getName()); // El primero es Laptop
         assertEquals("Mouse", result.get(1).getName()); // El segundo es Mouse
     }
+
+    @Test
+    void testGetUserById(){
+
+        // Arrange
+        Product product = new Product();
+        product.setId(1L);
+        product.setName("PC GAMER");
+        product.setPrice(1500.00);
+
+        // findById devuelve Optional.of()
+        Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+        // Act
+        ProductResponseDTO response = productService.getProductById(1L);
+        // tambien ProductResponseDTO response = productService.getProductById(product.getId());
+
+        // Assert
+        assertEquals(1, response.getId());
+        assertEquals("PC GAMER", response.getName());
+        assertEquals(1500.00, response.getPrice());
+    }
+
+    @Test
+    void testUpdateProduct(){
+
+        // Arrange(preparamos datos existentes en la BD simulada)
+        Product product = Product.builder()
+                .id(1L)
+                .name("Laptop")
+                .category("Electronic")
+                .description("Laptop gamer")
+                .price(1500.0)
+                .stock(10)
+                .build();
+
+        // Datos nuevos que llegan en el request
+        ProductRequestDTO productRequestDTO = ProductRequestDTO.builder()
+                .name("Laptop Pro")
+                .category("Electronic")
+                .description("Laptop gamer avanzada")
+                .price(2000.0)
+                .stock(5)
+                .build();
+
+        // Simulamos que el repositorio "busca", encuentra y devuelve el producto por id
+        Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+        // Simulamos que al "guardar" devuelve el producto actualizado
+        Mockito.when(productRepository.save(Mockito.any(Product.class))).thenAnswer(invocation -> {
+            Product update = invocation.getArgument(0);
+            update.setId(1L);
+            return update;
+        });
+
+        //Act
+        ProductResponseDTO response = productService.updateProduct(1L, productRequestDTO);
+
+        // Assert (solo verificamos el precio)
+        assertEquals(1L, response.getId());
+        assertEquals(2000.0, response.getPrice()); // Precio actualizado
+        assertEquals("Laptop Pro", response.getName()); // Nombre actualizado
+    }
+
 
 
 }

@@ -22,6 +22,7 @@ public class Mapper {
         if(user == null) return null;
 
         return UserResponseDTO.builder()
+                .id(user.getId()) // Reconmendale devolver siempre el id
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
