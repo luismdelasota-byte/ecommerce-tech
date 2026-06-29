@@ -1,7 +1,7 @@
 package com.ecommercetech.user.service;
 
 import com.ecommercetech.exception.NotFoundException;
-import com.ecommercetech.user.Mapper.Mapper;
+import com.ecommercetech.user.Mapper.UserMapper;
 import com.ecommercetech.user.dto.UserRequestDTO;
 import com.ecommercetech.user.dto.UserResponseDTO;
 import com.ecommercetech.user.repository.UserRepository;
@@ -29,14 +29,14 @@ public class UserServiceImpl implements UserService {
                 .role(userRequestDTO.getRole())
                 .build();
 
-        return Mapper.toResponseDTO(userRepository.save(user));
+        return UserMapper.toResponseDTO(userRepository.save(user));
     }
 
     @Override
     public List<UserResponseDTO> getAllUsers(){
         return userRepository.findAll()
                 .stream()
-                .map(Mapper::toResponseDTO)
+                .map(UserMapper::toResponseDTO)
                 .toList();
     }
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
          User user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuario no encontrado " + id));
 
-         return Mapper.toResponseDTO(user);
+         return UserMapper.toResponseDTO(user);
     }
 
 
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userRequestDTO.getPassword());
         user.setRole(userRequestDTO.getRole());
 
-        return Mapper.toResponseDTO(userRepository.save(user));
+        return UserMapper.toResponseDTO(userRepository.save(user));
     }
 
     @Override

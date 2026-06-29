@@ -4,7 +4,7 @@ import com.ecommercetech.user.dto.UserRequestDTO;
 import com.ecommercetech.user.dto.UserResponseDTO;
 import com.ecommercetech.user.model.User;
 
-public class Mapper {
+public class UserMapper {
 
     public static User toModel(UserRequestDTO dto){
         if(dto == null) return null;

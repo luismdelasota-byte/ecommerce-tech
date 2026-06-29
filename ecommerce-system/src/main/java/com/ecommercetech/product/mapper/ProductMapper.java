@@ -5,7 +5,7 @@ import com.ecommercetech.product.dto.ProductResponseDTO;
 import com.ecommercetech.product.model.Product;
 
 
-public class Mapper {
+public class ProductMapper {
 
     // De RequestDTO a Model
     public static Product toModel(ProductRequestDTO dto) {

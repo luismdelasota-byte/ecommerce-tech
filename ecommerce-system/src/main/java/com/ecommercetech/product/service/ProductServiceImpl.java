@@ -5,7 +5,7 @@ import com.ecommercetech.product.dto.ProductResponseDTO;
 import com.ecommercetech.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.ecommercetech.product.mapper.Mapper;
+import com.ecommercetech.product.mapper.ProductMapper;
 import com.ecommercetech.product.model.Product;
 
 import com.ecommercetech.exception.NotFoundException;
@@ -38,14 +38,14 @@ public class ProductServiceImpl implements ProductService {
                 .stock(productRequestDTO.getStock())
                 .build();
 
-        return Mapper.toResponseDTO(productRepository.save(product));
+        return ProductMapper.toResponseDTO(productRepository.save(product));
     }
 
     // Leemos el producto a partir del id, lo convertimos a DTO y lo devolvemos
     @Override
     public List<ProductResponseDTO> getAllProducts() {
         return productRepository.findAll().stream()
-                .map(Mapper::toResponseDTO)
+                .map(ProductMapper::toResponseDTO)
                 .toList();
     }
 
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Producto no encontrado con id: " + id ));
 
-        return Mapper.toResponseDTO(product);
+        return ProductMapper.toResponseDTO(product);
 
         /*Otra manera:
         * return productRepository.finById(id).
@@ -80,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
 
         // 2. Guardamos los cambios en la BD "productRepository.save(product)"
         // 3. Transformamos la entidad actualizada en un DTO para enviarlo al frontend "Mapper.toResponseDTO(productRepository.save(product));"
-        return Mapper.toResponseDTO(productRepository.save(product));
+        return ProductMapper.toResponseDTO(productRepository.save(product));
     }
 
     // Eliminar producto

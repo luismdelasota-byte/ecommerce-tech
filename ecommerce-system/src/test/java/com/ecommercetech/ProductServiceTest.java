@@ -2,7 +2,7 @@ package com.ecommercetech;
 
 import com.ecommercetech.product.dto.ProductRequestDTO;
 import com.ecommercetech.product.dto.ProductResponseDTO;
-import com.ecommercetech.product.mapper.Mapper;
+import com.ecommercetech.product.mapper.ProductMapper;
 import com.ecommercetech.product.model.Product;
 import com.ecommercetech.product.repository.ProductRepository;
 import com.ecommercetech.product.service.ProductServiceImpl;
@@ -28,7 +28,7 @@ public class ProductServiceTest {
 
     @Mock
     private ProductRepository productRepository; //simulado repositorio, crea el objeto ficticio
-    private Mapper mapper;
+    private ProductMapper mapper;
 
     @InjectMocks
     private ProductServiceImpl productService; // Inyectamos el mock, el servicio que vamos  a probar
