@@ -17,7 +17,9 @@ public class OrderDetailMapper {
         return OrderDetail.builder()
                 .order(order)
                 .product(product)
+                .quantity(orderDetailRequestDTO.getQuantity())
                 .unitPrice(orderDetailRequestDTO.getUnitPrice())
+                .subtotal(orderDetailRequestDTO.getQuantity() * orderDetailRequestDTO.getUnitPrice())
                 .build();
     }
 
@@ -32,8 +34,8 @@ public class OrderDetailMapper {
                 .idProduct(orderDetail.getProduct().getId())
                 .productName(orderDetail.getProduct().getName())
                 .quantity(orderDetail.getQuantity())
-                .uniPrice(orderDetail.getUnitPrice())
-                .subtotal(orderDetail.getQuantity() * orderDetail.getUnitPrice())
+                .unitPrice(orderDetail.getUnitPrice())
+                .subtotal(orderDetail.getSubtotal())
                 .build();
     }
 }

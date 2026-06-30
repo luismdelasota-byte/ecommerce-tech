@@ -17,6 +17,7 @@ public class OrderDetailRequestDTO {
     private Long id;
     private Long orderId;
     private Long productId;
-    private int unitPrice;
+    private int quantity;
+    private double unitPrice;
 
 }

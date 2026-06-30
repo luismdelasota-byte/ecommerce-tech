@@ -18,7 +18,7 @@ public class OrderDetailResponseDTO {
     private Long idProduct;
     private String productName;
     private int quantity;
-    private double uniPrice;
+    private double unitPrice;
     private double subtotal;
 
 

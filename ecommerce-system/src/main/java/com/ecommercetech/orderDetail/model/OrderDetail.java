@@ -28,7 +28,7 @@ public class OrderDetail {
     private double subtotal;
 
     @Column(name = "unit_price")
-    private int unitPrice;
+    private double unitPrice;
 
     @ManyToOne
     @JoinColumn(name = "id_order")
