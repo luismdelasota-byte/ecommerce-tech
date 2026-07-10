@@ -30,8 +30,8 @@ public class OrderDetailMapper {
 
         return OrderDetailResponseDTO.builder()
                 .id(orderDetail.getId())
-                .idOrder(orderDetail.getOrder().getId())
-                .idProduct(orderDetail.getProduct().getId())
+                .orderId(orderDetail.getOrder().getId())
+                .ProductId(orderDetail.getProduct().getId())
                 .productName(orderDetail.getProduct().getName())
                 .quantity(orderDetail.getQuantity())
                 .unitPrice(orderDetail.getUnitPrice())

@@ -6,7 +6,6 @@ import com.ecommercetech.order.dto.OrderResponseDTO;
 import com.ecommercetech.order.mapper.OrderMapper;
 import com.ecommercetech.order.model.Order;
 import com.ecommercetech.order.repository.OrderRepository;
-import com.ecommercetech.user.dto.UserRequestDTO;
 import com.ecommercetech.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

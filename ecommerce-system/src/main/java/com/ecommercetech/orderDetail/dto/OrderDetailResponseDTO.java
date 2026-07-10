@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class OrderDetailResponseDTO {
 
     private Long id;
-    private Long idOrder;
-    private Long idProduct;
+    private Long orderId;
+    private Long ProductId;
     private String productName;
     private int quantity;
     private double unitPrice;

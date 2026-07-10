@@ -1,5 +1,6 @@
 package com.ecommercetech.user.model;
 
+import com.ecommercetech.profileUser.model.ProfileUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ecommercetech.order.model.Order;
+import com.ecommercetech.cart.model.Cart;
 
 @Entity
 @Data
@@ -37,5 +39,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carts = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ProfileUser profileUser;
 
 }
