@@ -5,7 +5,7 @@ import com.ecommercetech.product.dto.ProductResponseDTO;
 import com.ecommercetech.product.mapper.ProductMapper;
 import com.ecommercetech.product.model.Product;
 import com.ecommercetech.product.repository.ProductRepository;
-import com.ecommercetech.product.service.ProductServiceImpl;
+import com.ecommercetech.security.service.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
