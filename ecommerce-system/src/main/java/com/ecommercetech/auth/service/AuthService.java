@@ -92,7 +92,7 @@ public class AuthService {
         User user = User.builder()
                 .username(registerRequestDTO.getUsername())
                 .email(registerRequestDTO.getEmail())
-                // Encripta la contraseña antes de gaurdarla
+                // Encripta la contraseña antes de guardarla
                 .password(passwordEncoder.encode(registerRequestDTO.getPassword()))
                 .role("USER") // Por defecto USER
                 .build();
