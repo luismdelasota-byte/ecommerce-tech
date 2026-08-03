@@ -13,6 +13,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.ecommercetech.user.model.User;
 import com.ecommercetech.user.repository.UserRepository;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.List;
+
 import java.io.IOException;
 
 @Component // Spring lo detecta automaticamente como un bean y lo registra
@@ -46,13 +49,16 @@ public class JwtFilter extends OncePerRequestFilter {
         // 3. Validar token y cargar usuario en el contexto de seguridad
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (jwtUtil.validateToken(token)) {
+                // Carga usuario manualmente, no es necesario usar la implementacion de otra clase "UserDetailsService"
                 User user = userRepository.findByUsername(username).orElse(null);
 
                 if (user != null) {
+                    List<SimpleGrantedAuthority> authorities = user.getRole() != null ?
+                            List.of(new SimpleGrantedAuthority(user.getRole())) : List.of();
                     // Si el username no es nulo, se crea el objeto de autenticacion
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(
-                                    user, null, null // aquí podríamos mapear roles si usamos GrantedAuthority
+                                    user, null, authorities
                             );
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

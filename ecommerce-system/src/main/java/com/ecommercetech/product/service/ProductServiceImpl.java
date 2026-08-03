@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDTO updateProduct(ProductRequestDTO productRequestDTO, Long id) {
+    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado con id " + id));
         product.setCategory(productRequestDTO.getCategory());

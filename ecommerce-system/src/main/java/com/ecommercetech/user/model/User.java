@@ -34,12 +34,14 @@ public class User {
     @Column(nullable = false, unique = true)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String role;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cart> carts = new ArrayList<>();
 
